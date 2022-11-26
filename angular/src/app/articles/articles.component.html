@@ -9,12 +9,16 @@
 </div>
 </div>-->
 <div style="margin-left: 30rem; margin-right: 30rem;">
-<div class="row" style="text-align: center;">
-<ul class="list-group" *ngFor="let p of listeArticles">
-  <div><li class="list-group-item active" aria-current="true" >{{p.titre}}</li></div>
+  <input name="count" [(ngModel)]="countText">
+  <button (click)="count()">Nombre</button>
+<div class="row" style="text-align: center;" *ngFor="let p of listeArticles">
+<ul class="list-group" *ngIf="p.categorie!='Travail'">
+  <div><li class="list-group-item active" aria-current="true">{{p.titre}}</li></div>
   <div><li class="list-group-item">Auteur: {{p.auteur}}</li></div>
   <div><li class="list-group-item">Date: {{p.date}}</li></div>
   <div><li class="list-group-item">Contenu: {{p.contenu}}</li></div>
+  <div><li class="list-group-item" [ngStyle]="{color: p.categorie == 'Education'? 'green': 'red'}">categorie: {{p.categorie}}</li></div>
+
 </ul>
 </div>
 </div>

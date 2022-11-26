@@ -1,0 +1,55 @@
+<form style="margin-left: 30rem; margin-right: 30rem;" #f="ngForm" (ngSubmit)="add()">
+    <h3 style="background-color: rgb(224, 206, 241)">Informations générale</h3>
+    <div class="mb-3">
+    <label class="form-label">Nom</label>
+    <input type="text" class="form-control" name="nom" placeholder="Enter name" [(ngModel)]="nom" #nomm="ngModel" required>
+    <div class="alert alert-danger" *ngIf="nomm.touched && nomm.invalid">
+        <div *ngIf="nomm.errors?.['required']">Name is required</div>
+        <!--<div *ngIf="nomm.errors?.['minlength']">Title must have at least 3 caracters</div>-->
+    </div>
+    </div>
+    <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="email" #emaill="ngModel" pattern="[a-zA-Z0-9]+\.+[a-zA-Z0-9]+@[a-zA-Z0-9]{3}$" required>
+    <div class="alert alert-danger" *ngIf="emaill.touched && emaill.invalid">
+        <div *ngIf="emaill.errors?.['required']">emaill is required</div>
+    </div>
+    </div>
+    <hr>
+    <h3 style="background-color: rgb(224, 206, 241)">Informations de paiement</h3>
+
+    <div class="mb-3">
+        <label class="form-label">Type de carte</label>
+        <input type="text" class="form-control" name="typeCarte" placeholder="Enter type of carte" [(ngModel)]="commande.typeCarte" #typeCarte="ngModel" required>
+        <div class="alert alert-danger" *ngIf="typeCarte.touched && typeCarte.invalid">
+            <div *ngIf="typeCarte.errors?.['required']">Type carte is required</div>
+            <!--<div *ngIf="nomm.errors?.['minlength']">Title must have at least 3 caracters</div>-->
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Numero carte</label>
+        <input type="text" class="form-control" name="numCarte" placeholder="Enter numero of carte" [(ngModel)]="commande.numCarte" #numCarte="ngModel" minlength="16" maxlength="16" required>
+        <div class="alert alert-danger" *ngIf="numCarte.touched && numCarte.invalid">
+            <div *ngIf="numCarte.errors?.['required']">num carte is required</div>
+            <div *ngIf="numCarte.errors?.['minlength']">Numero carte must have be a 16 caracters</div>
+
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date expiration</label>
+        <input type="date" class="form-control" name="date" placeholder="Enter date" [(ngModel)]="commande.date_exp" #date_exp="ngModel" required>
+        <div class="alert alert-danger" *ngIf="date_exp.touched && date_exp.invalid">
+            <div *ngIf="date_exp.errors?.['required']">Date is required</div>
+            <!--<div *ngIf="price.errors?.['min']">Price must have be a positive number</div>-->
+        </div>
+    </div>
+
+    <div class="mb-3"  *ngIf="typeCarte.valid && numCarte.valid && date_exp.valid">
+        <label class="form-label">Code</label>
+        <input type="text" class="form-control" name="code" placeholder="Enter code" [(ngModel)]="commande.code" #code="ngModel">
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Ajouter" [disabled]="f.invalid">
+
+</form>
